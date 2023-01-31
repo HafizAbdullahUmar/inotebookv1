@@ -1,11 +1,16 @@
 const mongoose = require("mongoose");
 
-const mongoURI = "mongodb://localhost:27017";
+const mongoURI = "mongodb://127.0.0.1:27017";
 mongoose.set("strictQuery", false);
 const connectToMongo = () => {
-  mongoose.connect(mongoURI, () => {
-    console.log("Connected to Monogo Succesfully");
-  });
+  mongoose
+    .connect(mongoURI)
+    .then(() => {
+      console.log("Connected to Monogo Succesfully");
+    })
+    .catch((err) => {
+      console.log("Connection failed", err);
+    });
 };
 
 module.exports = connectToMongo;
