@@ -3,7 +3,6 @@ import React from "react";
 
 const Noteitem = (props) => {
   const { title, description, date } = props.note;
-  console.log(moment(date).fromNow(), moment(date).valueOf());
   return (
     <div className="card col-md-3 p-0">
       <div className="card-body">
