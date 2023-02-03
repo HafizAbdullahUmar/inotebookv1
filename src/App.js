@@ -5,14 +5,26 @@ import About from "./components/About";
 import Home from "./components/Home";
 import NoteState from "./context/notes/NoteState";
 import Alert from "./components/Alert";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <>
       <NoteState>
         <Router>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
           <Navbar />
-          <Alert message="This is an amazing app made by following Harry's tutorial on codewithharry at youtube" />
           <div className="container">
             <Routes>
               <Route path="/" element={<Home />}></Route>

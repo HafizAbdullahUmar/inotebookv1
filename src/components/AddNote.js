@@ -8,11 +8,16 @@ const AddNote = () => {
   const [note, setNote] = useState({
     title: "",
     description: "",
-    tag: "Default",
+    tag: "",
   });
   const handleSubmit = (e) => {
     e.preventDefault();
     addNote(note);
+    setNote({
+      title: "",
+      description: "",
+      tag: "",
+    });
   };
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
@@ -20,7 +25,7 @@ const AddNote = () => {
   return (
     <div className="container my-3">
       <h2>Add a note</h2>
-      <form className="my-3">
+      <form className="my-3" onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
             Title
@@ -31,6 +36,9 @@ const AddNote = () => {
             id="title"
             name="title"
             onChange={onChange}
+            required
+            minLength={2}
+            value={note.title}
           />
         </div>
         <div className="mb-3">
@@ -43,23 +51,28 @@ const AddNote = () => {
             id="description"
             name="description"
             onChange={onChange}
+            required
+            value={note.description}
+            minLength={5}
           />
         </div>
-        <div className="mb-3 form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="exampleCheck1"
-          />
-          <label className="form-check-label" htmlFor="exampleCheck1">
-            Check me out
+        <div className="mb-3">
+          <label htmlFor="tag" className="form-label">
+            Tag
           </label>
+          <input
+            type="text"
+            className="form-control"
+            id="tag"
+            name="tag"
+            onChange={onChange}
+            value={note.tag}
+            required
+            minLength={5}
+          />
         </div>
-        <button
-          type="submit"
-          className="btn btn-primary"
-          onClick={handleSubmit}
-        >
+
+        <button type={"submit"} className="btn btn-primary">
           Add Note
         </button>
       </form>
